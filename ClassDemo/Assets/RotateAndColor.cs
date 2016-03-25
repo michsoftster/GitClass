@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
+using System;
 
 public class RotateAndColor : MonoBehaviour 
 {
@@ -12,8 +13,28 @@ public class RotateAndColor : MonoBehaviour
 
     IEnumerator RotateColor()
     {
-        yield return new WaitForSeconds(3f);
-        transform.Rotate(0,10,0);
-        GetComponent<MeshRenderer>().material.color = new Color(0,1,0,1);
+
+	    int iX     = 0;
+	    int iY     = 0;
+	    int iZ     = 0;
+	    int iRed   = 0;
+	    int iBlue  = 0;
+	    int iGreen = 0;	
+	    Random rdm = new Random();
+
+	    while(true)
+	    {
+	    	iX = rdm.Next(0,30);
+	    	iY = rdm.Next(0,30);
+	    	iZ = rdm.Next(0,30);
+
+	    	iRed   = rdm.Next(0,255);
+	    	iBlue  = rdm.Next(0,255);
+	    	iGreen = rdm.Next(0,255);
+
+	    	yield return new WaitForSeconds(1f);
+            transform.Rotate(iX,iY,iZ);
+            GetComponent<MeshRenderer>().material.color = new Color(iRed,iGreen,iBlue,1);
+	    }       
     }
 }
